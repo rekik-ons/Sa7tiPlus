@@ -1,0 +1,71 @@
+<div class="page">
+
+  <div class="left-panel">
+    <img src="/logo.png"alt="logo" class="logo">
+  </div>
+  
+ 
+  <div class="container mt-5">
+    <div class="card custom-card shadow p-4">
+
+      <h3 id='h3'class="mb-4 text-center">Créer un nouveau user</h3>
+
+      <form (ngSubmit)="addUser()">
+
+        <div class="mb-3">
+  <input type="text" placeholder="Nom et Prénom"
+         class="form-control custom-input"
+         [(ngModel)]="user.name"
+         name="name"
+         required>
+</div>
+
+        <div class="mb-3">
+          <input type="text" placeholder="CIN" class="form-control custom-input"
+                 [(ngModel)]="user.cin" name="cin" required>
+        </div>
+
+        <div class="mb-3">
+          <input type="text" placeholder="Numéro de Téléphone" class="form-control custom-input"
+                 [(ngModel)]="user.tel" name="tel">
+        </div>
+
+        <div class="mb-3">
+          <input type="email" placeholder="Email" class="form-control custom-input"
+                 [(ngModel)]="user.email" name="email" required>
+        </div>
+
+        <div class="mb-3">
+          <input type="date" class="form-control custom-input" placeholder="Date de naissance"
+                 [(ngModel)]="user.dateNaissance" name="dateNaissance" required>
+        </div>
+
+        <div class="mb-3">
+          <select class="form-control custom-input"
+                  [(ngModel)]="user.profil" name="profil" required>
+            <option value="">Profil</option>
+            <option value="medecin">Médecin</option>
+            <option value="patient">Patient</option>
+          </select>
+        </div>
+
+        <div class="radio-group">
+          <label>
+            <input type="radio" [(ngModel)]="user.sexe" name="sexe" value="femme"> Femme
+          </label>
+
+          <label>
+            <input type="radio" [(ngModel)]="user.sexe" name="sexe" value="homme"> Homme
+          </label>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" class="btn-save">Enregistrer</button>
+          <button type="reset" class="btn-cancel" (click)="cancel()">Annuler</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>

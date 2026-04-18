@@ -1,0 +1,79 @@
+
+.page {
+  display: flex;
+  background:#cbd5dc;
+  height:100%;
+  width: 100%;
+}
+
+
+.left-panel {
+  width: 30%;
+  background: #b0bec5;
+  position: relative; 
+  padding: 20px;
+}
+
+
+
+.logo {
+  width: 250px;
+  margin-bottom: 10px;
+}
+
+.custom-card {
+  border-radius: 25px;
+  background: #e0e0e0;
+  width: 400px;
+  margin: auto;
+  font-family: 'the seasons';
+  
+}
+
+
+.custom-input {
+  border-radius: 12px ;
+  background: #d6d6d6 ;
+  border: none ;
+  padding: 10px;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
+}
+
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: 'the seasons';
+  color: black;
+}
+
+.btn-save {
+  flex: 1;
+  background: #63d3d8;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  
+}
+.btn-login:hover {
+  background: #a9cbd5;
+}
+.btn-cancel {
+  flex: 1;
+  background: #63d3d8;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+ 
+}
+#h3 {
+  text-align: center;
+  margin-top: 20px;
+  color: #2a4052;
+}

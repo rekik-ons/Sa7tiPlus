@@ -1,0 +1,170 @@
+.page-wrapper {
+  background: #cbd5dc; 
+  display: flex;
+  height: 100vh; 
+  width: 100%;
+  
+}
+
+
+.sidebar {
+  width: 30%;
+  background: #b0bec5;
+  position: relative; 
+  padding: 20px;
+}
+
+
+.logo {
+  width: 250px;
+  margin-bottom: 10px;
+}
+
+
+.filtre-btn {
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: #dbefdf;
+  color: #2f9e44;
+  font-weight: 500;
+  transition: 0.2s;
+  font-family: 'the seasons';
+}
+
+.filtre-btn.active {
+  background: #e7f5ff;
+  color: #15aabf;
+  font-weight: 600;
+}
+
+.nav-filtres {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'the seasons';
+}
+
+
+.list-card {
+  background: #e0e0e0;
+  border-radius: 30px;
+  padding: 25px;
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-title {
+  font-size: 28px;
+  color: #2a4052;
+  margin-bottom: 20px;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.rdv-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.rdv-item {
+  background: #d6d6d6;
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px;
+  margin-bottom: 15px;
+  position: relative;
+  min-height: 150px; }
+
+.rdv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.statut-badge {
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+.badge-confirme {
+   background: #dbefdf;
+  color: #2f9e44;
+}
+
+.badge-reporte {
+   background: #dbefdf;
+  color: #2f9e44;
+}
+.rdv-item label {
+  font-size: 13px;
+  margin-right: 10px;
+  color: #2a4052;
+  font-family: 'the seasons';
+}
+
+
+.rdv-item .btn-supprimer {
+  padding: 5px 10px;   
+  font-size: 12px;     
+  font-weight: 400;    
+  border-radius: 15px;
+  color: #15aabf;
+  background: #e7f5ff;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+.bottom-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  width: 100%;
+}
+.btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  background: #e7f5ff;
+  color: #15aabf; 
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.rdv-meta {
+  display: flex;
+  flex-direction: column; 
+  font-size: 14px;
+}
+.btn:hover {
+  background: #a9cbd5;
+}
+.patient-name {
+  font-weight: 600;
+  font-size: 16px;
+  display: block;
+  color: #2a4052;
+  font-family: 'the seasons';
+}
+
+input[type="radio"] {
+  accent-color: #183538; 
+}
