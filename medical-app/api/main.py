@@ -11,7 +11,7 @@ conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",
-    database="mydb"
+    database="sa7tiplus"
 )
 print("connected to database successfully")
 
@@ -28,6 +28,8 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {"message": "Hello, World!"}
+
+
 @app.get("/get_users")
 def get_users():
     cursor = conn.cursor(dictionary=True)
@@ -38,22 +40,22 @@ def get_users():
 @app.post("/add_users")
 def add_user(
     nom: str = Form(...),
-    CIN: int = Form(...),
+    prenom: str = Form(...),
+    cin: int = Form(...),
     email: str = Form(...),
-    DateNaiss: date = Form(...),
-    Tel: str = Form(...),
+    tel: str = Form(...),
+    date_naiss: date = Form(...),
     genre: str = Form(...),
-    Profil_id_Profil1: int = Form(...)
+    id_profil: int = Form(...)
 
 ):
     try:
         cursor = conn.cursor()
-        # Correction : On passe un seul tuple (name, cin, mail, ...)
         query = """
-            INSERT INTO users (nom, CIN, email, DateNaiss, Tel, genre, Profil_id_Profil1) 
-            VALUES (%s, %s, %s, %s, %s,  %s, %s)
+            INSERT INTO users (nom, prenom, cin, email, date_naiss, tel, genre, id_profil) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """
-        values = (nom, CIN, email, DateNaiss, Tel, genre, Profil_id_Profil1)
+        values = (nom, prenom, cin, email, date_naiss, tel, genre, id_profil)
         
         cursor.execute(query, values)
         conn.commit()
@@ -62,14 +64,14 @@ def add_user(
         return {"status": "success", "message": f"Utilisateur {nom} ajouté."}
         
     except Exception as e:
-        conn.rollback() # Annule la transaction en cas d'erreur
+        conn.rollback() 
         raise HTTPException(status_code=500, detail=f"Erreur base de données: {str(e)}")
     
 @app.post("/delete_users")
 def delete_user(id: int = Form(...)):
     try:
         cursor = conn.cursor()
-        query = "DELETE FROM users WHERE id = %s"
+        query = "DELETE FROM users WHERE id_user = %s"
         cursor.execute(query, (id,))
         conn.commit()
         cursor.close()
@@ -77,28 +79,29 @@ def delete_user(id: int = Form(...)):
         return {"status": "success", "message": f"Utilisateur avec ID {id} supprimé."}
         
     except Exception as e:
-        conn.rollback() # Annule la transaction en cas d'erreur
+        conn.rollback() 
         raise HTTPException(status_code=500, detail=f"Erreur base de données: {str(e)}")  
 
 @app.post("/update_users")
 def update_user(
-    id: int=Form(...),
-    nom: str=Form(...),
-    CIN: int=Form(...),
-    email: str=Form(...),
-    DateNaiss: date=Form(...),
-    Tel: str=Form(...),
-    genre: str=Form(...),
-    Profil_id_Profil1: int=Form(...)
+    id_user: int = Form(...),
+    nom: str = Form(...),
+    prenom: str = Form(...),
+    cin: int = Form(...),
+    email: str = Form(...),
+    tel: str = Form(...),
+    date_naiss: date = Form(...),
+    genre: str = Form(...),
+    id_profil: int = Form(...)
 ):
     try:
         cursor = conn.cursor()
         query = """
             UPDATE users 
-            SET nom=%s,CIN=%s,email=%s,DateNaiss=%s,Tel=%s,genre=%s, Profil_id_Profil1=%s
-            WHERE id=%s
+            SET nom=%s,prenom=%s,cin=%s,email=%s,date_naiss=%s,tel=%s,genre=%s,id_profil=%s
+            WHERE id_user= %s
         """
-        values = (nom, CIN, email, DateNaiss, Tel, genre, Profil_id_Profil1, id)
+        values = (nom, prenom, cin, email, date_naiss, tel, genre, id_profil, id_user)
         
         cursor.execute(query, values)
         conn.commit()
