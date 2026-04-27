@@ -1,0 +1,81 @@
+/* Conteneur principal de la carte */
+.card {
+    background-color: #e9ecef; /* Gris clair comme sur l'image */
+    border-radius: 30px;
+    padding: 30px;
+    width: 450px;
+    margin: 50px auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Titre */
+.card-header h1 {
+    color: #2c3e50;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Style commun pour tous les inputs (puisque tout est input chez toi) */
+input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    box-sizing: border-box; /* Évite que l'input dépasse */
+}
+
+/* Style spécifique pour simuler les lignes "Nom et Prénom" */
+.row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.col {
+    flex: 1;
+}
+
+/* Style des boutons */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Bouton Prendre RDV (Turquoise) */
+.col .btn-primary, 
+button:first-of-type {
+    background-color: #64cfd1;
+    color: #2c3e50;
+}
+
+/* Bouton Annuler */
+.col-md-3 button,
+button:last-of-type {
+    background-color: #64cfd1;
+    color: #2c3e50;
+}
+
+/* Effet au survol */
+button:hover {
+    filter: brightness(90%);
+}
+
+/* Pour que l'input date ressemble à l'image */
+input[type="date"] {
+    color: #495057;
+}
+.card-header {
+    border-bottom: none !important; /* Supprime la ligne de séparation */
+    padding-bottom: 0;             /* Optionnel : réduit l'espace sous le titre */
+}

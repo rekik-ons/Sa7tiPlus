@@ -1,0 +1,38 @@
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 50px; /* Augmente l'espace interne */
+  border-radius: 40px; /* Coins très arrondis */
+  border: none;
+  width: 100%;
+  max-width: 550px; /* Largeur de la carte */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-family: 'Playfair Display', serif; /* Ou une police élégante */
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #1a2a3a;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.form-control {
+  background-color: #f1f3f6;
+  border: none;
+  border-radius: 15px;
+  padding: 18px;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.btn-info {
+  background-color: #5ed2d6;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}

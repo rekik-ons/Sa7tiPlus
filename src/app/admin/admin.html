@@ -1,0 +1,34 @@
+<div class="container py-5">
+  
+  <div class="d-flex justify-content-between align-items-start mb-4">
+  <div class="logo-container d-flex align-items-center">
+    <img src="logo.png" alt="logo sa7tiPlus" style="width:200px; height: auto;">    
+    <h2 class="fw-bold mb-0 bienvenue-text">Bienvenue</h2>
+  </div>
+
+  <button (click)="logout()" class="btn btn-logout shadow-sm">
+    Déconnexion
+  </button>
+</div>
+
+  <div class="d-flex justify-content-end gap-2 mb-5">
+    <button (click)="filterByProfil('Tous')" class="btn btn-light rounded-pill px-4 shadow-sm text-info">Tous</button>
+    <button (click)="filterByProfil('Médecin')" class="btn btn-light rounded-pill px-4 shadow-sm">Médecins</button>
+    <button (click)="filterByProfil('Infirmière')" class="btn btn-light rounded-pill px-4 shadow-sm">Infirmières</button>
+    <button (click)="filterByProfil('Patient')" class="btn btn-light rounded-pill px-4 shadow-sm">Patients</button>
+    <button class="btn btn-light rounded-pill px-4 shadow-sm text-success border-success-subtle ms-3">Créer user</button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    @for (u of filteredUsers; track u.name) {
+      <div class="col">
+        <app-user 
+          [name]="u.name" 
+          [profil]="u.profil" 
+          [email]="u.email" 
+          [tel]="u.tel">
+        </app-user>
+      </div>
+    }
+  </div>
+</div>
