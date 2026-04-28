@@ -1,0 +1,97 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.home-page {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+
+.left {
+  width: 50%;
+  background: #c7d1d8;
+  position: relative;
+  padding: 80px 70px;
+}
+
+.logo {
+  width: 250px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10; 
+}
+
+.content {
+  margin-top: 140px;
+}
+
+.title {
+  font-family: 'Allura', cursive;
+  color: #ffffff;
+  font-size: 40px;
+  margin: 0;
+}
+
+.brand {
+  font-family: 'Allura', cursive;
+  color: #2e7d7d;
+  font-size: 50px;
+  margin: 10px 0 25px 0;
+}
+
+
+.subtitle {
+  font-family: serif; 
+  font-size: 18px;
+  color: #132540;
+  margin-bottom: 15px;
+}
+
+.description {
+  font-size: 15px;
+  color: #000000;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+
+.btn-login {
+  font-family: 'Alice', serif;
+  margin-top: 35px;
+  width: 220px;
+  background: #7fd6db;
+  border: none;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-login:hover {
+  background: #a9cbd5;
+}
+
+
+.contact {
+  margin-top: auto;
+  font-size: 14px;
+  color: #3a4a5a;
+}
+
+
+.right {
+  width: 50%;
+  height: 100%;
+}
+
+.right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

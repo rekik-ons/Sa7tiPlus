@@ -1,0 +1,104 @@
+/* FOND DE PAGE */
+.container-fluid {
+  height: 100vh;
+  background-size: cover;
+  background-color: #cbd5cb;
+  position: relative;
+  overflow: auto;
+  padding: 0;
+}
+
+/* EFFET DE FLOU */
+.container-fluid::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  z-index: 0;
+}
+
+/* CONTENU AU-DESSUS DU FLOU */
+.row {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+/* BANDE GRISE À GAUCHE */
+.side-panel {
+  background: #96a5ad;
+  height: 100vh;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+/* LOGO */
+.logo-container img {
+  max-width: 400px;
+  height: auto;
+  filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* CORRECTION BOOTSTRAP */
+.vh-100 {
+  height: 100vh;
+}
+
+/* CARTE FORMULAIRE */
+.card {
+  background-color: #e9ecef;
+  border-radius: 30px;
+  padding: 30px;
+  width: 450px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-header {
+  border-bottom: none !important;
+  padding-bottom: 0;
+}
+
+.card-header h1 {
+  color: #2c3e50;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input[type="date"] {
+  color: #495057;
+}
+
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  background-color: #64cfd1;
+  color: #2c3e50;
+}
+
+button:hover {
+  filter: brightness(90%);
+}

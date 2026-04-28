@@ -1,0 +1,77 @@
+<div class="page">
+
+  <div class="left-panel">
+    <img src="/logo.png"alt="logo" class="logo">
+  </div>
+  
+ 
+  <div class="container mt-5">
+    <div class="card custom-card shadow p-4">
+
+      <h3 id='h3'class="mb-4 text-center">Créer un nouveau user</h3>
+
+      <form (ngSubmit)="addUser()">
+
+<div class="col d-flex gap-3 mb-3">
+  <input type="text" id="nom"placeholder="Nom "
+         class="form-control custom-input"
+         [(ngModel)]="user.nom"
+         name="nom"
+         required>
+<input type="text" id="prenom" placeholder="Prénom "
+         class="form-control custom-input"
+         [(ngModel)]="user.prenom"
+         name="prenom"
+         required>
+</div>
+
+        <div class="mb-3">
+          <input type="text" id="cin"placeholder="CIN" class="form-control custom-input"
+                 [(ngModel)]="user.cin" name="cin" required>
+        </div>
+
+        <div class="mb-3">
+          <input type="text" id="tel" placeholder="Numéro de Téléphone" class="form-control custom-input"
+                 [(ngModel)]="user.tel" name="tel">
+        </div>
+
+        <div class="mb-3">
+          <input type="email" id="email"placeholder="Email" class="form-control custom-input"
+                 [(ngModel)]="user.email" name="email" required>
+        </div>
+
+        <div class="mb-3">
+          <input type="date" id="date"class="form-control custom-input" placeholder="Date de naissance"
+                 [(ngModel)]="user.dateNaissance" name="dateNaissance" required>
+        </div>
+
+        <div class="mb-3">
+          <select class="form-control custom-input"
+        [(ngModel)]="user.profil" id="profil"name="profil" required>
+  <option value="">Profil</option>
+  <option value="Administrateur">Administrateur</option>
+  <option value="Médecin">Médecin</option>
+  <option value="Patient">Patient</option>
+</select>
+        </div>
+
+        <div class="radio-group">
+          <label>
+            <input type="radio" id="femme" [(ngModel)]="user.sexe" name="sexe" value="femme"> Femme
+          </label>
+
+          <label>
+            <input type="radio" [(ngModel)]="user.sexe" name="sexe" value="homme"> Homme
+          </label>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" name="enregistrer"class="btn-save">Enregistrer</button>
+          <button type="reset" class="btn-cancel" (click)="cancel()">Annuler</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>
