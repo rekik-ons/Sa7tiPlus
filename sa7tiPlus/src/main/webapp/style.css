@@ -1,0 +1,67 @@
+/* Fond de la page (gris bleuté comme sur Canva) */
+.bg-light-blue {
+    background-color: #d1d9e0; /* Couleur de fond de ton screenshot */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Carte centrale */
+.rdv-card {
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    border: none;
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Champs de saisie */
+.form-control, .form-select {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Bouton principal (Teal/Vert d'eau) */
+.btn-teal {
+    background-color: #64ccc5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.btn-teal:hover {
+    background-color: #05818d;
+    color: white;
+}
+
+/* Bouton Annuler */
+.btn-cancel {
+    background-color: #05818d;
+    color: white;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-cancel:hover {
+    background-color: #046a74;
+    color: white;
+}
+
+/* Labels */
+.form-label {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+/* Bordure verticale entre le logo et le formulaire */
+.border-end {
+    border-right: 2px solid #dee2e6 !important;
+}
+
+@media (max-width: 768px) {
+    .border-end {
+        border-right: none !important;
+        border-bottom: 2px solid #dee2e6 !important;
+        margin-bottom: 20px;
+    }
+}
