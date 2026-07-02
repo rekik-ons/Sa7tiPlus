@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router , RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-consulter-user',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './consulter-user.html',
   styleUrl: './consulter-user.css',
 })
@@ -16,28 +16,33 @@ export class ConsulterUser implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit() {
-    this.loadUsers();
-  }
+nomPrenom: string = '';
 
-  loadUsers() {
-    this.http.get<any[]>('http://localhost:8000/users/all')
-      .subscribe({
-        next: (data) => {
-          this.users = data;
-          this.filteredUsers = data;
-        },
-        error: (err) => console.error(err)
-      });
+ngOnInit() {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    this.nomPrenom = `${localStorage.getItem('prenom')}`;
   }
+  this.loadUsers();
+}
+loadUsers() {
+  this.http.get<any[]>('http://localhost:8000/users/all')
+    .subscribe({
+      next: (data) => {
+        console.log('data reçue:', data); 
+        this.users = data.filter(u => u.profil !== 'Administrateur');
+        this.filteredUsers = [...this.users];
+      },
+      error: (err) => console.error('Erreur API:', err)
+    });
+}
 
-  filterByProfil(profil: string) {
-    if (profil === 'Tous') {
-      this.filteredUsers = this.users;
-    } else {
-      this.filteredUsers = this.users.filter(u => u.profil === profil);
-    }
+filterByProfil(profil: string) {
+  if (profil === 'Tous') {
+    this.filteredUsers = [...this.users];
+  } else {
+    this.filteredUsers = this.users.filter(u => u.profil === profil);
   }
+}
   logout() {
   localStorage.clear();
   this.router.navigate(['/connexion']);
@@ -59,6 +64,6 @@ export class ConsulterUser implements OnInit {
   }
 
   goToAddUser() {
-    this.router.navigate(['/add-user']);
+    this.router.navigate(['/admin/add-user']);
   }
 }

@@ -13,14 +13,14 @@ def login(data: LoginData):
     conn = get_db_connection()
     cursor = get_cursor(conn)
 
-    # Utilisation de strip() pour éviter les espaces accidentels
     login_val = data.login.strip()
     password_val = data.password.strip()
 
     query = """
-    SELECT id_profil, profil, login
-    FROM profil
-    WHERE login = %s AND mot_de_passe = %s
+    SELECT u.id_user, u.nom, u.prenom, p.profil
+    FROM users u
+    JOIN profil p ON u.id_profil = p.id_profil
+    WHERE p.login = %s AND p.mot_de_passe = %s
     """
 
     cursor.execute(query, (login_val, password_val))
@@ -33,8 +33,9 @@ def login(data: LoginData):
         return {
             "status": "success",
             "role": user["profil"],
-            "id_user": user["id_profil"] 
+            "id_user": user["id_user"],
+            "nom": user["nom"],
+            "prenom": user["prenom"]
         }
     else:
-        
         raise HTTPException(status_code=401, detail="Login ou mot de passe incorrect")

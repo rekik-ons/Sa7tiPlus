@@ -20,9 +20,12 @@ export class ConsulterDossier implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit() {
-    this.loadDossiers();
-  }
+  nomPrenom: string = '';
+
+ngOnInit() {
+  this.nomPrenom = `${localStorage.getItem('prenom')} ${localStorage.getItem('nom')}`;
+  this.loadDossiers();
+}
 
   loadDossiers() {
     this.http.get<any[]>('http://localhost:8000/dossiers/').subscribe({
@@ -63,14 +66,20 @@ export class ConsulterDossier implements OnInit {
     this.appliquerFiltres();
   }
 
-  archiver(id: number) {
-    if (!confirm('Confirmer l\'archivage de ce dossier ?')) return;
-    this.http.put(`http://localhost:8000/dossiers/archive/${id}`, {}).subscribe({
-      next: () => {
-        alert('Dossier archivé avec succès ');
-        this.loadDossiers();
-      },
-      error: () => alert('Erreur lors de l\'archivage ❌')
-    });
-  }
+  successMessage: string = '';
+errorMessage: string = '';
+
+archiver(id: number) {
+  if (!confirm('Confirmer l\'archivage de ce dossier ?')) return;
+  this.http.put(`http://localhost:8000/dossiers/archive/${id}`, {}).subscribe({
+    next: () => {
+      this.successMessage = 'Dossier archivé avec succès';
+      this.loadDossiers();
+    },
+    error: () => this.errorMessage = 'Erreur lors de l\'archivage'
+  });
+}
+modifierDossier(id: number) {
+  this.router.navigate(['/medecin/modifier-dossier'], { queryParams: { id } });
+}
 }

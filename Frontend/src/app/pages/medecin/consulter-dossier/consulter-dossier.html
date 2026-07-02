@@ -1,86 +1,107 @@
 <section class="consulter-page">
-  <!-- ══════════════════════════════════════════════════════════
-       HEADER
-  ══════════════════════════════════════════════════════════ -->
-  <div class="row">
-    <div class="col-md-4">
-      <div class="logo-wrap">
-        <img src="assets/images/logo.png" alt="Sa7ti Plus logo" />
-      </div>
+
+ 
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <img src="logo.png" alt="Sa7ti Plus logo" />
+      <span class="navbar-welcome">Bienvenue, Dr {{ nomPrenom }}</span>
     </div>
-    <div class="col-md-4 d-flex justify-content-center align-items-center">
-      <h2 class="page-title">Dossiers Patients</h2>
+    <button class="btn-deconnexion" (click)="logout()">Déconnexion</button>
+  </nav>
+
+
+  <div class="search-container">
+    <div class="search-bar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="search" placeholder="Rechercher un patient…"
+        [(ngModel)]="recherche"
+        (input)="appliquerFiltres()" />
     </div>
-    <div class="col-md-4 d-flex justify-content-end align-items-center pt-2">
-  <a (click)="logout()" class="btn-deconnexion" style="cursor:pointer">Déconnexion</a>
-</div>
   </div>
-  
-  <div class="header-row">
-    <div class="welcome-wrap">
-        <p class="welcome-text">Bienvenue</p>
-      </div>
-    </div>
-
-    
 
 
-  <div class="search-row">
-  <div class="search-wrap">
-    <input type="search" placeholder="Rechercher un patient…"
-      [(ngModel)]="recherche"
-      (input)="appliquerFiltres()" />
-    <i class="bi bi-search search-icon"></i>
-  </div>
-</div>
-
-<!-- Tabs -->
-<div class="tabs-bar">
-  <button class="tab-btn" [class.active]="filtreActif === 'all'" 
+  <div class="action-bar">
+    <button class="filter-pill" [class.active]="filtreActif === 'all'"
         (click)="filtrer('all')">Tous</button>
-<button class="tab-btn" [class.active]="filtreActif === 'En cours de traitement'" 
-        (click)="filtrer('En cours de traitement')">En Cours de Traitement</button>
-<button class="tab-btn" [class.active]="filtreActif === 'Archivé'" 
-        (click)="filtrer('Archivé')">Archivé</button>
-  <button class="tab-btn ms-auto" [routerLink]="['../creer-dossier']">
-    <i class="bi bi-plus-circle me-1"></i>Créer un dossier
-  </button>
-</div>
-
-<!-- Cards dynamiques -->
-<div class="cards-grid">
-  <div class="patient-card" *ngFor="let d of dossiersFiltres">
-   <span class="status-badge" 
-      [class.active]="d.etat === 'En cours de traitement'"
-      [class.archived]="d.etat === 'Archivé'">
-  {{ d.etat }}
-</span>
-
-    <h5 class="patient-name">{{ d.nom }} {{ d.prenom }}</h5>
-
-    <ul class="patient-info">
-      <li><strong>Âge :</strong> {{ d.age }} ans</li>
-      <li><strong>Diagnostic :</strong> {{ d.diagnostic }}</li>
-      <li><strong>Traitement :</strong> {{ d.traitement }}</li>
-      <li><strong>Allergie :</strong> {{ d.allergie || '—' }}</li>
-    </ul>
-
-    <div class="card-divider"></div>
-
-    <div class="card-actions">
-      <button class="btn-modifier"
-              [routerLink]="['../modifier-dossier']"
-              [queryParams]="{ id: d.id_dossier }">
-        <i class="bi bi-pencil-square me-1"></i>Modifier
-      </button>
-      <button class="btn-archiver" (click)="archiver(d.id_dossier)">
-  <i class="bi bi-archive me-1"></i>Archiver
-</button>
-    </div>
+    <button class="filter-pill btn-nouveau" [routerLink]="['/medecin/creer-dossier']">
+      Créer un dossier
+    </button>
+    <button class="filter-pill btn-rdv" [routerLink]="['/medecin/confirmer-rdv']">
+      Liste des RDV
+    </button>
   </div>
 
-  <!-- Message si aucun résultat -->
-  <p *ngIf="dossiersFiltres.length === 0" class="text-center text-muted mt-4">
-    Aucun dossier trouvé.
-  </p>
-</div>
+  <div *ngIf="successMessage" class="alert-success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</div>
+
+
+  <div class="cards-grid">
+    <div class="dossier-card" *ngFor="let d of dossiersFiltres">
+
+      <div class="card-head">
+        <h5 class="patient-name">{{ d.nom }} {{ d.prenom }}</h5>
+        <span class="status-badge"
+          [ngClass]="{
+            'status-encours': d.etat === 'En cours de traitement',
+            'status-archive': d.etat === 'Archivé',
+            'status-other': d.etat !== 'En cours de traitement' && d.etat !== 'Archivé'
+          }">
+          {{ d.etat === 'En cours de traitement' ? 'En cours' : d.etat }}
+        </span>
+      </div>
+
+      <div class="card-fields">
+        <div class="field">
+          <span class="field-label">Diagnostic</span>
+          <span class="field-value" [class.empty]="!d.diagnostic">
+            {{ d.diagnostic || 'Non renseigné' }}
+          </span>
+        </div>
+        <div class="field">
+          <span class="field-label">Traitement</span>
+          <span class="field-value" [class.empty]="!d.traitement">
+            {{ d.traitement || 'Non renseigné' }}
+          </span>
+        </div>
+        <div class="field">
+          <span class="field-label">Allergie</span>
+          <span class="field-value" [class.empty]="!d.allergie">
+            {{ d.allergie || 'Aucune' }}
+          </span>
+        </div>
+        <div class="field">
+          <span class="field-label">Poids / Taille</span>
+          <span class="field-value">
+            {{ d.poids ? d.poids + ' kg' : '—' }} / {{ d.taille ? d.taille + ' cm' : '—' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <div class="card-actions">
+        <ng-container *ngIf="d.etat !== 'Archivé'; else archivedMsg">
+          <button class="btn-modifier" (click)="modifierDossier(d.id_dossier)">
+            <i class="bi bi-pencil-square me-1"></i>Modifier
+          </button>
+          <button class="btn-archiver" (click)="archiver(d.id_dossier)">
+            <i class="bi bi-archive me-1"></i>Archiver
+          </button>
+        </ng-container>
+        <ng-template #archivedMsg>
+          <span class="text-muted fst-italic">Dossier archivé</span>
+        </ng-template>
+      </div>
+
+    </div>
+
+    <div *ngIf="dossiersFiltres.length === 0" class="empty-state">
+      <div class="empty-title">Aucun dossier trouvé.</div>
+    </div>
+
+  </div>
+
+</section>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-add-user',
@@ -25,34 +25,43 @@ export class AddUser {
   constructor(private http: HttpClient, private router: Router) {}
 
   addUser() {
-    const body = new HttpParams()
-      .set('nom', this.user.nom)
-      .set('prenom', this.user.prenom)
-      .set('cin', this.user.cin)
-      .set('tel', this.user.tel)
-      .set('email', this.user.email)
-      .set('date_naiss', this.user.dateNaissance)
-      .set('profil', this.user.profil)
-      .set('genre', this.user.sexe);
+  const body = {
+    nom: this.user.nom,
+    prenom: this.user.prenom,
+    cin: this.user.cin,
+    tel: this.user.tel,
+    email: this.user.email,
+    date_naissance: this.user.dateNaissance, 
+    profil: this.user.profil,
+    sexe: this.user.sexe                       
+  };
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    });
-
-    this.http.post('http://localhost:8000/users/add', body.toString(), { headers })
+    this.http.post('http://localhost:8000/users/add', body)
       .subscribe({
         next: (res) => {
           alert('Utilisateur ajouté avec succès');
-          this.router.navigate(['/consulter-user']);
+          this.router.navigate(['/admin/consulter-user']);
         },
         error: (err) => {
-          console.error('Erreur complète:', err);
-          alert('Erreur : ' + JSON.stringify(err.error));
-        }
+    console.error('Erreur complète:', err);
+
+    let message: string;
+
+    if (err.status === 0) {
+      
+      message = 'Impossible de contacter le serveur. Vérifiez que le backend est démarré.';
+    } else if (err.error && typeof err.error === 'object' && !(err.error instanceof ProgressEvent)) {
+      
+      message = err.error.detail || err.error.message || JSON.stringify(err.error);
+    } else {
+      message = `Erreur ${err.status}: ${err.statusText}`;
+    }
+
+    alert('Erreur : ' + message);
+  }
       });
   }
-
   cancel() {
-    this.router.navigate(['/consulter-user']);
+    this.router.navigate(['/admin/consulter-user']);
   }
 }

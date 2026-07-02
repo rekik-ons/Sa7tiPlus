@@ -1,43 +1,69 @@
-<div class="container py-5">
+<div class="page-wrapper">
 
-  <div class="d-flex justify-content-between align-items-start mb-4">
-    <div class="logo-container d-flex align-items-center">
-      <img src="logo.png" alt="logo sa7tiPlus" style="width:200px; height: auto;">
-      <h2 class="fw-bold mb-0 bienvenue-text">Bienvenue</h2>
+  <div class="header d-flex justify-content-between align-items-center">
+
+    <div class="logo-container">
+      <img src="logo.png" alt="logo sa7tiPlus">
+      <h2 class="bienvenue-text">
+        Bienvenue, {{ nomPrenom }}
+      </h2>
     </div>
-    <button (click)="logout()" class="btn btn-logout shadow-sm">Déconnexion</button>
+
+    <button (click)="logout()" class="btn btn-logout">
+      Déconnexion
+    </button>
+
   </div>
 
-  <div class="d-flex justify-content-end gap-2 mb-5">
-    <button (click)="filterByProfil('Tous')" class="btn btn-light rounded-pill px-4 shadow-sm text-info">Tous</button>
-    <button (click)="filterByProfil('Médecin')" class="btn btn-light rounded-pill px-4 shadow-sm">Médecins</button>
-    <button (click)="filterByProfil('Patient')" class="btn btn-light rounded-pill px-4 shadow-sm">Patients</button>
-    <button (click)="goToAddUser()" class="btn btn-light rounded-pill px-4 shadow-sm text-success border-success-subtle ms-3">Créer user</button>
+ 
+  <div class="filters">
+    <button (click)="filterByProfil('Tous')" class="btn btn-filter">Tous</button>
+    <button (click)="filterByProfil('Médecin')" class="btn btn-filter">Médecins</button>
+    <button (click)="filterByProfil('Patient')" class="btn btn-filter">Patients</button>
+    <button (click)="goToAddUser()" class="btn btn-create">Créer user</button>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    @for (u of filteredUsers; track u.id_user) {
-      <div class="col">
-        <div class="card shadow-sm border-0 text-center p-3" style="border-radius: 20px;">
-          <div class="card-body">
-            <h5 class="fw-bold">{{ u.nom }} {{ u.prenom }}</h5>
-            <p class="text-uppercase text-secondary small mb-4">{{ u.profil }}</p>
+  
+  <div class="cards-grid">
 
-            <div class="text-start mb-4" style="font-size: 0.9rem;">
-              <p class="mb-1"><strong>Email :</strong> {{ u.email }}</p>
-              <p class="mb-0"><strong>Tel :</strong> {{ u.tel }}</p>
-            </div>
+    <div class="card-user" *ngFor="let u of filteredUsers">
 
-            <div class="d-flex gap-2">
-              <button class="btn btn-outline-info w-100 rounded-pill">Modifier</button>
-              <button class="btn btn-danger w-100 rounded-pill"
-                style="background-color: #ff8a8a; border: none;"
-                (click)="archiver(u.id_user)">Archiver</button>
-            </div>
-          </div>
-        </div>
+      <h5>{{ u.prenom }} {{ u.nom }}</h5>
+      <p class="role">{{ u.profil }}</p>
+
+      <div class="info">
+        <p><strong>Email :</strong> {{ u.email }}</p>
+        <p><strong>Tel :</strong> {{ u.tel }}</p>
+        <p *ngIf="u.profil === 'Médecin' && u.specialite">
+          <strong>Spécialité :</strong> {{ u.specialite }}
+        </p>
       </div>
-    }
+
+      <div class="actions">
+
+        <ng-container *ngIf="!u.archiver; else archived">
+
+          <button class="btn btn-edit"
+            [routerLink]="['/admin/modifier-user']"
+            [queryParams]="{ id: u.id_user }">
+            Modifier
+          </button>
+
+          <button class="btn btn-delete"
+            (click)="archiver(u.id_user)">
+            Archiver
+          </button>
+
+        </ng-container>
+
+        <ng-template #archived>
+          <span class="archived-text">Utilisateur archivé</span>
+        </ng-template>
+
+      </div>
+
+    </div>
+
   </div>
 
 </div>

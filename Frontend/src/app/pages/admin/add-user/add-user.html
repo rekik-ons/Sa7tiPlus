@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page active">
 
   <div class="left-panel">
     <img src="/logo.png"alt="logo" class="logo">
@@ -8,7 +8,7 @@
   <div class="container mt-5">
     <div class="card custom-card shadow p-4">
 
-      <h3 id='h3'class="mb-4 text-center">Créer un nouveau user</h3>
+      <h3 id="h3" class="mb-4 text-center">Créer un nouveau user</h3>
 
       <form (ngSubmit)="addUser()">
 
@@ -48,7 +48,7 @@
         <div class="mb-3">
           <select class="form-control custom-input"
         [(ngModel)]="user.profil" id="profil"name="profil" required>
-  <option value="">Profil</option>
+  <option value="" disabled>Profil</option>
   <option value="Administrateur">Administrateur</option>
   <option value="Médecin">Médecin</option>
   <option value="Patient">Patient</option>

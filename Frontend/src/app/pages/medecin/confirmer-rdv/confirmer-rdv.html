@@ -1,0 +1,54 @@
+<div class="page-wrapper">
+  <div class="sidebar">
+    <img src="logo.png" alt="logo" class="logo">
+    <div class="nav-filtres">
+      <button *ngFor="let f of filtres" (click)="setFiltre(f)"
+        [class.active]="filtreActif === f" class="filtre-btn">{{ f }}</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <div class="list-card">
+      <h2 class="list-title">Liste des RDV</h2>
+      <div *ngIf="infoMessage" class="alert alert-info mx-3">{{ infoMessage }}</div>
+      <div *ngIf="loading">Chargement...</div>
+      <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <div *ngFor="let rdv of filteredRdvList" class="rdv-item">
+        <div class="rdv-header">
+          <span class="patient-name">{{ rdv.patientNom }} {{ rdv.patientPrenom }}</span>
+          <span class="statut-badge" [ngClass]="getStatutClass(rdv.statut)">{{ rdv.statut }}</span>
+        </div>
+
+        <div class="rdv-meta">
+          <span>Date : {{ rdv.date_RDV | date:'dd/MM/yyyy' }}</span>
+          <span>Heure : {{ rdv.heure_RDV }}</span>
+        </div>
+
+        <div class="rdv-actions">
+          <div class="radio-group">
+            <label>
+              <input type="radio" [name]="'statut-' + rdv.id_rdv"
+                [disabled]="rdv.envoye || rdv.statut === 'Reporté' || rdv.statut === 'Confirmé'"
+                (change)="setStatut(rdv, 'Confirmé')"> Confirmé
+            </label>
+            <label>
+              <input type="radio" [name]="'statut-' + rdv.id_rdv"
+                [disabled]="rdv.envoye || rdv.statut === 'Reporté' || rdv.statut === 'Confirmé'"
+                (change)="setStatut(rdv, 'Reporté')"> Reporté
+            </label>
+          </div>
+          <button class="btn-supprimer" (click)="supprimer(rdv.id_rdv)">Supprimer</button>
+        </div>
+      </div>
+
+      <div class="bottom-row">
+        <button class="btn" (click)="envoyer()">Envoyer</button>
+        <button class="btn" (click)="quitter()">Quitter</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

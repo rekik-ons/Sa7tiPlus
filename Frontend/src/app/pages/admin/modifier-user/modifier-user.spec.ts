@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Rdv } from './confirmerRDV';
+import { ModifierUser } from './modifier-user';
 
-describe('Rdv', () => {
-  let component: Rdv;
-  let fixture: ComponentFixture<Rdv>;
+describe('ModifierUser', () => {
+  let component: ModifierUser;
+  let fixture: ComponentFixture<ModifierUser>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Rdv],
+      imports: [ModifierUser],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Rdv);
+    fixture = TestBed.createComponent(ModifierUser);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

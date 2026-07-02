@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:host { display: flex; width: 100%; min-height: 100vh; }
+
+.page{
+  position:absolute;inset:0;
+  display:flex;  
+  background: #eef2f5;
+  min-height:100vh;
+  overflow:hidden;
+}
+.page.active{display:flex}
+ 
+
+.left-panel{
+  width:28%;min-width:220px;max-width:320px;
+  height:100vh;
+  background:#d0d8de;
+  backdrop-filter:blur(10px);
+  border-right:1px solid rgba(255,255,255,0.3);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:48px;
+  flex-shrink:0;
+}
+
+
+.logo { width: 250px; height: auto; }
+
+
+.container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  height: 100vh;
+  overflow-y: auto;
+  max-width: none !important;
+}
+
+
+.custom-card {
+  background: rgba(248, 245, 245, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+
+#h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2a4052;
+  text-align: center;
+  margin-bottom: 28px;
+  font-family: 'Nunito', sans-serif;
+}
+
+
+.mb-3 { margin-bottom: 0 !important; }
+
+.custom-input {
+  display: block;
+  width: 100%;
+  margin-bottom: 14px;
+  border-radius: 12px !important;
+  background: #e0e0e2 !important;
+  border: none !important;
+  padding: 14px 18px !important;
+  font-size: 0.95rem !important;
+  color: #2a4052 !important;
+  font-family: 'Nunito', sans-serif !important;
+  transition: 0.2s !important;
+  outline: none;
+}
+.custom-input:focus {
+  box-shadow: 0 0 0 3px rgba(100,209,209,0.3) !important;
+  background: white !important;
+}
+
+.buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.btn-save,
+.btn-cancel {
+  flex: 1;
+  background: #64d1d1;
+  color: #1a5e5e;
+  border: none;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-save:hover,
+.btn-cancel:hover {
+  background: #4bc4c9;
+  color: white;
+}
+
+
+@media (max-width: 768px) {
+  .page { flex-direction: column; height: auto; min-height: 100vh; overflow-y: auto; }
+  .left-panel { width: 100%; max-width: 100%; height: 70px; flex-direction: row; padding: 12px 20px; justify-content: flex-start; }
+  .logo { width: 120px; }
+  .container { padding: 24px 20px; height: auto; align-items: flex-start; }
+  .custom-card { padding: 28px 20px; }
+}

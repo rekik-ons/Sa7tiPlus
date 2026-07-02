@@ -1,1 +1,64 @@
-<p>consulter-rdv works!</p>
+<section class="consulter-page">
+
+  <div class="row align-items-center">
+    
+<div class="header-top">
+  <div class="logo-wrap">
+    <img src="logo.png" alt="Sa7ti Plus logo" />
+  </div>
+  <p class="welcome-text">Bienvenue, {{ nomPrenom }}</p>
+  <button (click)="logout()" class="btn-logout">Déconnexion</button>
+</div>
+  </div>
+
+
+  <div class="tabs-bar">
+    <button class="tab-btn" [class.active]="filtreActif === 'all'"
+            (click)="filtrer('all')">Tous</button>
+    <button class="tab-btn" [class.active]="filtreActif === 'Confirmé'"
+        (click)="filtrer('Confirmé')">Confirmé</button>
+<button class="tab-btn" [class.active]="filtreActif === 'En attente'"
+        (click)="filtrer('EN attente')">En Attente</button>
+    <button class="tab-btn ms-auto" [routerLink]="['/patient/prendre-rdv']">
+  <i class="bi bi-plus-circle me-1"></i>Prendre un RDV
+</button>
+  </div>
+
+
+  <div class="cards-grid">
+    <div class="patient-card" *ngFor="let r of rdvsFiltres">
+
+<span class="status-badge"
+  [class.Confirmé]="r.statut === 'Confirmé'"
+  [class.en-attente]="r.statut === 'En Attente'"
+  [class.Reporté]="r.statut === 'Reporté'">
+  {{ r.statut }}
+</span>
+
+      <h5 class="patient-name">{{ r.specialite }}</h5>
+
+      <ul class="patient-info">
+      <li><strong>Date :</strong> {{ r.date_RDV | date:'dd/MM/yyyy' }}</li>
+<li><strong>Horaire :</strong> {{ r.heure_RDV }}</li>
+      </ul>
+
+      <div class="card-divider"></div>
+
+      <div class="card-actions">
+       <button class="btn-modifier"
+        [routerLink]="['/patient/modifier-rdv']"
+        [queryParams]="{ id: r.id_rdv, date: r.date_RDV, heure: r.heure_RDV, specialite: r.specialite }">
+  Modifier
+</button>
+        <button class="btn-annuler" (click)="annuler(r.id_rdv)">
+          Annuler
+        </button>
+      </div>
+    </div>
+
+
+    <p *ngIf="rdvsFiltres.length === 0" class="text-center text-muted mt-4">
+      Aucun RDV trouvé.
+    </p>
+  </div>
+</section>

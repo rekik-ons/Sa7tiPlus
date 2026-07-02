@@ -2,7 +2,7 @@
 
   <!-- PARTIE GAUCHE -->
   <div class="left-panel">
-    <img src="assets/images/logo.png" alt="logo" class="logo">
+    <img src="/logo.png" alt="logo" class="logo">
   </div>
   
   <!-- FORM -->
@@ -14,12 +14,12 @@
       <form (ngSubmit)="modifier()">
 
         <div class="mb-3">
-          <input type="text" placeholder="Diagnostic" class="form-control custom-input"
+          <input type="text" id="diagnostic" placeholder="Diagnostic" class="form-control custom-input"
                  [(ngModel)]="dossier.diagnostic" name="Diagnostic" >
         </div>
 
         <div class="mb-3">
-          <input type="text" placeholder="Traitement" class="form-control custom-input"
+          <input type="text" id="traitement"placeholder="Traitement" class="form-control custom-input"
                  [(ngModel)]="dossier.traitement" name="Traitement" >
         </div>
 
@@ -29,9 +29,10 @@
           </textarea>
         </div>
 
-        
+        <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
                <div class="buttons">
-          <button type="submit" class="btn-save">Enregistrer</button>
+          <button type="submit" name="enregistrer" class="btn-save">Enregistrer</button>
           <button type="reset" class="btn-cancel" (click)="cancel()">Annuler</button>
         </div>
 

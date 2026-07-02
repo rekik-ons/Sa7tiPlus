@@ -1,132 +1,163 @@
-.page {
-  display: flex;
-  background: #cbd5dc;
-  height: 100vh;
-  width: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:host { display: flex; width: 100%; min-height: 100vh; }
+
+.page{
+  position:absolute;inset:0;
+  display:flex;  
+  background: #eef2f5;
+  min-height:100vh;
+  overflow:hidden;
+}
+.page.active{display:flex}
+
+.left-panel{
+  width:28%;min-width:220px;max-width:320px;
+  height:100vh;
+  background:#d0d8de;
+  backdrop-filter:blur(10px);
+  border-right:1px solid rgba(255,255,255,0.3);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:48px;
+  flex-shrink:0;
 }
 
-/* PARTIE GAUCHE */
-.left-panel {
-  width: 30%;
-  background: #b0bec5;
-  position: relative;
-}
 
-.logo {
-  width: 250px;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
+.logo { width: 250px; height: auto; }
 
-/* FORMULAIRE */
 .container {
+  flex: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
 }
 
 .custom-card {
+  background: rgba(248, 245, 245, 0.55);
+  backdrop-filter: blur(10px);
   border-radius: 25px;
-  background: #e0e0e0;
-  width: 500px;
-  padding: 20px;
-  font-family: 'The Seasons', serif;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 
-/* INPUTS */
+#h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2a4052;
+  margin-bottom: 28px;
+  font-family: 'Nunito', sans-serif;
+}
+
 .custom-input {
   border-radius: 12px !important;
-  background: #d6d6d6 !important;
+  background: #e0e0e2 !important;
   border: none !important;
-  padding: 12px 15px;
+  padding: 14px 18px !important;
+  font-size: 0.95rem !important;
+  color: #2a4052 !important;
   width: 100%;
-  font-size: 14px;
-  transition: 0.3s;
-}
+  font-family: 'Nunito', sans-serif !important;
+  transition: 0.2s !important;
+  margin-bottom: 8px; }
 
 .custom-input:focus {
-  outline: none;
-  background: #cfd8dc !important;
-  box-shadow: 0 0 5px rgba(99, 211, 216, 0.6);
+  background: white !important;
+  box-shadow: 0 0 0 3px rgba(100,209,209,0.3) !important;
+  outline: none !important;
 }
 
-/* TEXTAREA */
 textarea.custom-input {
   resize: none;
   height: 80px;
 }
-
-/* TITRE */
-#h3 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #2a4052;
-  font-weight: bold;
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
-/* ROW SPACING */
+.form-row-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 16px;
+}
+.custom-input::placeholder { color: #6c757d; }
+
+
 .row {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  column-gap: 16px; 
 }
 
-/* BOUTONS */
 .buttons {
   display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  margin-top: 20px;
-  font-family: 'The Seasons', serif;
+  gap: 14px;
+  margin-top: 24px;
 }
 
-.btn-save,
+.btn-save {
+  flex: 1;
+  background: #64d1d1;
+  color: #1a5e5e;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-save:hover { background: #4bbbc0; color: white; }
+
 .btn-cancel {
   flex: 1;
+  background: #64d1d1;
+  color: #1a5e5e;
   border: none;
-  padding: 12px;
-  border-radius: 20px;
-  font-weight: 500;
-  transition: 0.3s;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
   cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-cancel:hover { background: #4bbbc0; color: white; }
+
+.alert-danger {
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  text-align: center;
+  border: none;
 }
 
-/* SAVE */
-.btn-save {
-  background: #63d3d8;
+.alert-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  text-align: center;
+  border: none;
 }
 
-.btn-save:hover {
-  background: #4bbbc0;
-}
-
-/* CANCEL */
-.btn-cancel {
-  background: #63d3d8;
-}
-
-.btn-cancel:hover {
-  background: #4bbbc0;
-}
-
-/* RESPONSIVE */
 @media (max-width: 768px) {
-  .page {
-    flex-direction: column;
-  }
-
-  .left-panel {
-    width: 100%;
-    height: 120px;
-  }
-
-  .logo {
-    position: static;
-    display: block;
-    margin: 10px auto;
-  }
-
-  .custom-card {
-    width: 90%;
-  }
+  .left-panel { display: none; }
+  .container { padding: 24px 16px; }
+  .custom-card { padding: 24px 16px; }
 }

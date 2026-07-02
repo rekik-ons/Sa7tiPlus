@@ -1,97 +1,264 @@
 
-body {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  padding: 0;
 }
+
+html, body, #root, #app, #__next, [data-reactroot] {
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1;
+}
+
 
 .home-page {
   display: flex;
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 
 .left {
-  width: 50%;
-  background: #c7d1d8;
-  position: relative;
-  padding: 80px 70px;
+  flex: 0 0 50%;
+  width: 50vw;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px 20px 40px;
+  background-color: #d4dde3;
+  overflow: hidden;
 }
 
 .logo {
-  width: 250px;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 10; 
+  width: 180px;
+  margin-bottom: 20px;
+  display: block;
+  flex-shrink: 0;
 }
 
 .content {
-  margin-top: 140px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 0;
 }
 
-.title {
-  font-family: 'Allura', cursive;
+.content h1 {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 36px;
   color: #ffffff;
-  font-size: 40px;
-  margin: 0;
+  font-weight: normal;
+  margin-bottom: 5px;
+  line-height: 1.2;
 }
 
-.brand {
-  font-family: 'Allura', cursive;
-  color: #2e7d7d;
-  font-size: 50px;
-  margin: 10px 0 25px 0;
+.content h2 {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 26px;
+  color: #4a5a6a;
+  font-weight: normal;
+  margin-bottom: 10px;
+  line-height: 1.2;
 }
 
-
-.subtitle {
-  font-family: serif; 
-  font-size: 18px;
-  color: #132540;
+.content .subtitle {
+  font-size: 14px;
+  color: #3a4a5a;
   margin-bottom: 15px;
 }
 
-.description {
-  font-size: 15px;
-  color: #000000;
-  max-width: 420px;
-  line-height: 1.6;
-}
-
-
-.btn-login {
-  font-family: 'Alice', serif;
-  margin-top: 35px;
-  width: 220px;
-  background: #7fd6db;
-  border: none;
-  padding: 13px;
-  border-radius: 10px;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-}
-
-.btn-login:hover {
-  background: #a9cbd5;
-}
-
-
-.contact {
-  margin-top: auto;
-  font-size: 14px;
+.content .description {
+  font-size: 12px;
   color: #3a4a5a;
+  line-height: 1.5;
+  max-width: 350px;
 }
 
+.footer {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: #3a4a5a;
+  display: flex;
+  gap: 15px;
+  padding-top: 15px;
+  margin-top: auto;
+}
 
 .right {
-  width: 50%;
-  height: 100%;
+  flex: 0 0 50%;
+  width: 50vw;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #000;
 }
 
 .right img {
   width: 100%;
   height: 100%;
+  min-height: 100%;
+  min-width: 100%;
   object-fit: cover;
+  object-position: 65% center;
+  display: block;
+  border: none;
+  outline: none;
+}
+
+/* ========== BUTTON ========== */
+.btn-login {
+  margin-top: 25px;
+  width: 180px;
+  background: #5dd3d8;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.btn-login:hover {
+  background: #4bc4c9;
+}
+
+/* ========== MOBILE ========== */
+@media screen and (max-width: 768px) {
+  .home-page {
+    flex-direction: column;
+    position: relative;
+    overflow-y: auto;
+  }
+
+  .left {
+    flex: 0 0 auto;
+    width: 100vw;
+    height: auto;
+    min-height: auto;
+    padding: 25px 20px;
+    order: 1;
+  }
+
+  .logo {
+    width: 140px;
+    margin-bottom: 15px;
+  }
+
+  .content h1 {
+    font-size: 28px;
+  }
+
+  .content h2 {
+    font-size: 22px;
+  }
+
+  .content .subtitle {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .content .description {
+    font-size: 12px;
+    max-width: 100%;
+  }
+
+  .btn-login {
+    width: 100%;
+    max-width: 280px;
+    margin-top: 20px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 5px;
+    font-size: 11px;
+    padding-top: 15px;
+    margin-top: 15px;
+  }
+
+  .right {
+    flex: 0 0 250px;
+    width: 100vw;
+    height: 250px;
+    min-height: 250px;
+    order: 2;
+  }
+
+  .right img {
+    height: 250px;
+    min-height: 250px;
+    object-position: 60% center;
+  }
+}
+
+/* ========== PETIT MOBILE ========== */
+@media screen and (max-width: 480px) {
+  .left {
+    padding: 20px 15px;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .content h1 {
+    font-size: 24px;
+  }
+
+  .content h2 {
+    font-size: 18px;
+  }
+
+  .content .subtitle {
+    font-size: 12px;
+  }
+
+  .content .description {
+    font-size: 11px;
+  }
+
+  .btn-login {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .footer {
+    font-size: 10px;
+  }
+
+  .right {
+    flex: 0 0 200px;
+    height: 200px;
+    min-height: 200px;
+  }
+
+  .right img {
+    height: 200px;
+    min-height: 200px;
+  }
 }

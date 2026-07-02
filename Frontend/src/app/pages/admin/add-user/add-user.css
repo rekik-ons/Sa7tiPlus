@@ -1,79 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap');
 
-.page {
+:host { display: flex; width: 100%; min-height: 100vh; }
+.page{
+  position:absolute;inset:0;
+  display:flex;  
+  background: #eef2f5;
+  min-height:100vh;
+  overflow:hidden;
+}
+.page.active{display:flex}
+ 
+
+.left-panel{
+  width:28%;min-width:220px;max-width:320px;
+  height:100vh;
+  background:#d0d8de;
+  backdrop-filter:blur(10px);
+  border-right:1px solid rgba(255,255,255,0.3);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:48px;
+  flex-shrink:0;
+}
+
+
+.logo { width: 250px; height: auto; }
+
+select.custom-input {
+  appearance: auto !important;
+  -webkit-appearance: auto !important;
+  -moz-appearance: auto !important;
+}
+
+
+.container {
+  flex: 1;
   display: flex;
-  background:#cbd5dc;
-  height:100%;
-  width: 100%;
-}
-
-
-.left-panel {
-  width: 30%;
-  background: #b0bec5;
-  position: relative; 
-  padding: 20px;
-}
-
-
-
-.logo {
-  width: 250px;
-  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
 }
 
 .custom-card {
+  background: rgba(248, 245, 245, 0.55);
+  backdrop-filter: blur(10px);
   border-radius: 25px;
-  background: #e0e0e0;
-  width: 400px;
-  margin: auto;
-  font-family: 'the seasons';
-  
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 
+#h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2d3748;
+  text-align: center;
+  margin-bottom: 24px;
+}
 
 .custom-input {
-  border-radius: 12px ;
-  background: #d6d6d6 ;
-  border: none ;
-  padding: 10px;
+  border-radius: 12px !important;
+  background: #e0e0e2!important;
+  border: none !important;
+  padding: 14px 18px !important;
+  font-size: 0.95rem !important;
+  color: #2a4052 !important;
+  width: 100%;
+  font-family: 'Nunito', sans-serif !important;
+  transition: 0.2s !important;
+}
+
+.custom-input:focus {
+  border-color: #4db6ac !important;
+  box-shadow: 0 0 0 3px rgba(77,182,172,0.15) !important;
+  outline: none !important;
 }
 
 .radio-group {
   display: flex;
-  justify-content: space-around;
-  margin: 15px 0;
+  justify-content: flex-start;
+  gap: 40px;
+  margin: 14px 0 20px;
 }
 
-
-.buttons {
+.radio-group label {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-family: 'the seasons';
-  color: black;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #607d8b;
+  cursor: pointer;
 }
+
+.buttons { display: flex; gap: 10px; margin-top: 8px; }
 
 .btn-save {
   flex: 1;
-  background: #63d3d8;
+  padding: 11px;
+  border-radius: 50px;
   border: none;
-  padding: 10px;
-  border-radius: 10px;
-  
+  cursor: pointer;
+  background: #4db6ac;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: 'Nunito', sans-serif;
+  transition: background 0.2s;
 }
-.btn-login:hover {
-  background: #a9cbd5;
-}
+.btn-save:hover { background: #80cbc4; }
 .btn-cancel {
   flex: 1;
-  background: #63d3d8;
+  padding: 11px;
+  border-radius: 50px;
   border: none;
-  padding: 10px;
-  border-radius: 10px;
- 
+  cursor: pointer;
+  background: #4db6ac;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: 'Nunito', sans-serif;
+  transition: background 0.2s;
 }
-#h3 {
-  text-align: center;
-  margin-top: 20px;
-  color: #2a4052;
+
+.btn-cancel:hover {
+  background: #80cbc4;
 }
